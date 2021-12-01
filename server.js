@@ -1,12 +1,13 @@
-//build standard express app
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 3001;
+const api = require('./api/notes');
 
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api',api);
 
 app.use(express.static('public'));
 
@@ -21,11 +22,3 @@ app.get('/*', (req, res) =>
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
-
-// ROUTS 
- //HTML ROUTES
-// home Route 
-    // send index.html
-// notes route
-    //send notes.html
-// API Routs
